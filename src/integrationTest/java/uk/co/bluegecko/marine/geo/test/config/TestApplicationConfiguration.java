@@ -4,9 +4,9 @@ import lombok.NonNull;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import uk.co.bluegecko.marine.test.random.SteppingGenerator;
 
 import java.time.*;
-import java.util.Random;
 import java.util.random.RandomGenerator;
 
 @TestConfiguration
@@ -19,17 +19,22 @@ public class TestApplicationConfiguration {
 
 	@Bean
 	public LocalDate date() {
-		return LocalDate.of(2000, Month.JANUARY, 1);
+		return LocalDate.of(2000, Month.JUNE, 15);
 	}
 
 	@Bean
 	public LocalTime time() {
-		return LocalTime.of(12, 30, 0);
+		return LocalTime.of(12, 30, 10);
 	}
 
 	@Bean
-	public ZonedDateTime dateTime(@NonNull LocalDate date, @NonNull LocalTime time, @NonNull ZoneId zone) {
-		return ZonedDateTime.of(date, time, zone);
+	public LocalDateTime dateTime(@NonNull LocalDate date, @NonNull LocalTime time) {
+		return LocalDateTime.of(date, time);
+	}
+
+	@Bean
+	public ZonedDateTime zonedDateTime(@NonNull LocalDateTime dateTime, @NonNull ZoneId zone) {
+		return ZonedDateTime.of(dateTime, zone);
 	}
 
 	@Bean
@@ -46,7 +51,7 @@ public class TestApplicationConfiguration {
 	@Bean
 	@Primary
 	public RandomGenerator randomGenerator() {
-		return new Random();
+		return new SteppingGenerator();
 	}
 
 }

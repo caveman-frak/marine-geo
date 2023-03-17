@@ -40,7 +40,7 @@ class CountryControllerTest {
 
 	private final Continent backOfBeyond = Continent.builder().code("BoB").name("Back of Beyond").build();
 	private final List<Country> countries = List.of(
-			Country.builder().code("GB").name("Grate Britain")
+			Country.builder().code("GB").name("Grate Britannia")
 					.continent(backOfBeyond)
 					.nativeName("Arsehole of Europe").build(),
 			Country.builder().code("US").name("Fractured States of Murica")
@@ -75,7 +75,7 @@ class CountryControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.code").value("GB"))
-				.andExpect(jsonPath("$.name").value("Grate Britain"))
+				.andExpect(jsonPath("$.name").value("Grate Britannia"))
 				.andReturn();
 	}
 

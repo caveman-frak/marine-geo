@@ -6,6 +6,8 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":wire"))
     testImplementation(project(":test"))
+    runtimeOnly("org.liquibase:liquibase-core")
+    runtimeOnly("com.h2database:h2")
 }
 
 testing {
@@ -14,6 +16,7 @@ testing {
             dependencies {
                 implementation(project())
                 implementation(project(":wire"))
+                implementation(project(":test"))
             }
         }
     }

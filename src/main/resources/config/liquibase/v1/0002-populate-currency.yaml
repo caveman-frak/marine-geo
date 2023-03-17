@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: "01"
+      author: cavemanfrak
+      context: static
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  name: code
+                  type: CHAR(3)
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+              - column:
+                  name: numeric_code
+                  type: DECIMAL(3)
+              - column:
+                  name: minor
+                  type: DECIMAL(1)
+              - column:
+                  name: symbol
+                  type: VARCHAR(6)
+            relativeToChangelogFile: true
+            file: v1/data/0002-01-currency-data.csv
+            tableName: currency
+            usePreparedStatements: true
+            encoding: UTF-8
