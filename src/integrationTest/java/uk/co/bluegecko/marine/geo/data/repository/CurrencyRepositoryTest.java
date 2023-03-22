@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import uk.co.bluegecko.marine.geo.data.model.Currency;
+import uk.co.bluegecko.marine.test.jassert.Conditions;
 
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.allOf;
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.co.bluegecko.marine.test.jassert.Conditions.extract;
 
 @DataJpaTest
 public class CurrencyRepositoryTest {
@@ -30,11 +30,11 @@ public class CurrencyRepositoryTest {
 		assertThat(currencyRepository.findById("GBP"))
 				.isPresent().get()
 				.has(allOf(
-						extract(Currency::code, "code", String::equals, "equal to", "GBP"),
-						extract(Currency::name, "name", String::equals, "equal to", "Pound Sterling"),
-						extract(Currency::numericCode, "numeric", Integer::equals, "equal to", 826),
-						extract(Currency::minor, "minor", Integer::equals, "equal to", 2),
-						extract(Currency::symbol, "symbol", String::equals, "equal to", "£")
+						Conditions.extracted(Currency::code, "code", String::equals, "equal to", "GBP"),
+						Conditions.extracted(Currency::name, "name", String::equals, "equal to", "Pound Sterling"),
+						Conditions.extracted(Currency::numericCode, "numeric", Integer::equals, "equal to", 826),
+						Conditions.extracted(Currency::minor, "minor", Integer::equals, "equal to", 2),
+						Conditions.extracted(Currency::symbol, "symbol", String::equals, "equal to", "£")
 				));
 	}
 
@@ -43,11 +43,11 @@ public class CurrencyRepositoryTest {
 		assertThat(currencyRepository.findById("DJF"))
 				.isPresent().get()
 				.has(allOf(
-						extract(Currency::code, "code", String::equals, "equal to", "DJF"),
-						extract(Currency::name, "name", String::equals, "equal to", "Djibouti Franc"),
-						extract(Currency::numericCode, "numeric", Integer::equals, "equal to", 262),
-						extract(Currency::minor, "minor", Integer::equals, "equal to", 0),
-						extract(Currency::symbol, "symbol", Objects::isNull, "is null")
+						Conditions.extracted(Currency::code, "code", String::equals, "equal to", "DJF"),
+						Conditions.extracted(Currency::name, "name", String::equals, "equal to", "Djibouti Franc"),
+						Conditions.extracted(Currency::numericCode, "numeric", Integer::equals, "equal to", 262),
+						Conditions.extracted(Currency::minor, "minor", Integer::equals, "equal to", 0),
+						Conditions.extracted(Currency::symbol, "symbol", Objects::isNull, "is null")
 				));
 	}
 
@@ -62,7 +62,7 @@ public class CurrencyRepositoryTest {
 	void findByNumericCode() {
 		assertThat(currencyRepository.findByNumericCode(978))
 				.isPresent().get()
-				.has(extract(Currency::code, "code", String::equals, "equal to", "EUR"));
+				.has(Conditions.extracted(Currency::code, "code", String::equals, "equal to", "EUR"));
 	}
-	
+
 }
