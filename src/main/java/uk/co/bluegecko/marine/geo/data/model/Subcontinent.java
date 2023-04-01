@@ -1,9 +1,10 @@
 package uk.co.bluegecko.marine.geo.data.model;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -16,26 +17,23 @@ import lombok.ToString;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @EqualsAndHashCode
 @ToString
-public class Currency {
+public class Subcontinent {
 
 	@Id
 	@NonNull
-	private String code;
-
-	@Column
-	private int numericCode;
+	int id;
 
 	@Column
 	@NonNull
-	private String name;
+	String name;
 
-	@Column
-	private int minor;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "continent")
+	@NonNull
+	Continent continent;
 
-	@Column
-	private String symbol;
 
 }

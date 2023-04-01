@@ -15,6 +15,7 @@ testing {
         val integrationTest by registering(JvmTestSuite::class) {
             dependencies {
                 implementation(project())
+                implementation(project(":shared"))
                 implementation(project(":wire"))
                 implementation(project(":test"))
             }

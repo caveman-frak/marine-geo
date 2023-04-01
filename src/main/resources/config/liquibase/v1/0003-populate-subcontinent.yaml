@@ -7,22 +7,16 @@ databaseChangeLog:
         - loadData:
             columns:
               - column:
-                  name: code
-                  type: CHAR(3)
+                  name: id
+                  type: INT
               - column:
                   name: name
                   type: VARCHAR(100)
               - column:
-                  name: numeric_code
-                  type: DECIMAL(3)
-              - column:
-                  name: minor
-                  type: DECIMAL(1)
-              - column:
-                  name: symbol
-                  type: VARCHAR(6)
+                  name: continent
+                  type: INT
             relativeToChangelogFile: true
-            file: data/v1/currency-data.csv
-            tableName: currency
+            file: data/v1/subcontinent-data.csv
+            tableName: subcontinent
             usePreparedStatements: true
             encoding: UTF-8

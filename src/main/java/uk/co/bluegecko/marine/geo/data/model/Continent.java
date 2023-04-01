@@ -1,6 +1,5 @@
 package uk.co.bluegecko.marine.geo.data.model;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,26 +15,21 @@ import lombok.ToString;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @EqualsAndHashCode
 @ToString
-public class Currency {
+public class Continent {
 
 	@Id
 	@NonNull
-	private String code;
-
-	@Column
-	private int numericCode;
+	int id;
 
 	@Column
 	@NonNull
-	private String name;
+	String code;
 
 	@Column
-	private int minor;
-
-	@Column
-	private String symbol;
+	@NonNull
+	String name;
 
 }
