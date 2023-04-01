@@ -20,7 +20,7 @@ public class ContinentRepositoryTest {
 		assertThat(continentRepository.findAll())
 				.isNotEmpty()
 				.hasSize(7)
-				.extracting(Continent::code)
+				.extracting(Continent::getCode)
 				.containsExactly("AN", "AF", "OC", "SA", "NA", "AS", "EU");
 	}
 
@@ -29,8 +29,8 @@ public class ContinentRepositoryTest {
 		assertThat(continentRepository.findById(150))
 				.isPresent().get()
 				.has(allOf(
-						extracted(Continent::code, "code", String::equals, "equal to", "EU"),
-						extracted(Continent::name, "name", String::equals, "equal to", "Europe")
+						extracted(Continent::getCode, "code", String::equals, "equal to", "EU"),
+						extracted(Continent::getName, "name", String::equals, "equal to", "Europe")
 				));
 	}
 
@@ -39,8 +39,8 @@ public class ContinentRepositoryTest {
 		assertThat(continentRepository.findByCode("EU"))
 				.isPresent().get()
 				.has(allOf(
-						extracted(Continent::code, "code", String::equals, "equal to", "EU"),
-						extracted(Continent::name, "name", String::equals, "equal to", "Europe")
+						extracted(Continent::getCode, "code", String::equals, "equal to", "EU"),
+						extracted(Continent::getName, "name", String::equals, "equal to", "Europe")
 				));
 	}
 

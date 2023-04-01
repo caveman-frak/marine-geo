@@ -6,19 +6,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.ToString;
 
 @Entity
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@NoArgsConstructor(force = true)
 public class Currency {
 
 	@Id

@@ -7,19 +7,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.ToString;
 
 @Entity
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@EqualsAndHashCode
-@ToString
 public class Country {
 
 	@Id
@@ -30,12 +26,12 @@ public class Country {
 	String code3;
 
 	@Column
-	private Integer numericCode;
+	Integer numericCode;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "subcontinent")
 	@NonNull
-	Subcontinent subcontinent;
+	final Subcontinent subcontinent;
 
 	@Column
 	@NonNull

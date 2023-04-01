@@ -22,7 +22,7 @@ public class CountryRepositoryTest {
 		assertThat(countryRepository.findAll())
 				.isNotEmpty()
 				.hasSize(249)
-				.extracting(Country::code)
+				.extracting(Country::getCode)
 				.contains("GB", "US", "FR");
 	}
 
@@ -31,12 +31,12 @@ public class CountryRepositoryTest {
 		assertThat(countryRepository.findById("GB"))
 				.isPresent().get()
 				.has(allOf(
-						extracted(Country::code, "code", String::equals, "equal to", "GB"),
-						extracted(Country::name, "name", String::equals, "equal to",
+						extracted(Country::getCode, "code", String::equals, "equal to", "GB"),
+						extracted(Country::getName, "name", String::equals, "equal to",
 								"United Kingdom of Great Britain and Northern Ireland"),
-						extracted(Country::numericCode, "numeric code", Integer::equals, "equal to", 826),
-						extracted(Country::nativeName, "minor", String::equals, "equal to", "United Kingdom"),
-						extracted(Country::subcontinent, "continent", Object::equals, "equal to",
+						extracted(Country::getNumericCode, "numeric code", Integer::equals, "equal to", 826),
+						extracted(Country::getNativeName, "minor", String::equals, "equal to", "United Kingdom"),
+						extracted(Country::getSubcontinent, "continent", Object::equals, "equal to",
 								Subcontinent.builder().id(154).name("Northern Europe").continent(
 										Continent.builder().code("EU").id(150).name("Europe").build()).build())
 				));
@@ -53,14 +53,14 @@ public class CountryRepositoryTest {
 	void findByCode3() {
 		assertThat(countryRepository.findByCode3("GBR"))
 				.isPresent().get()
-				.has(extracted(Country::code, "code", String::equals, "equal to", "GB"));
+				.has(extracted(Country::getCode, "code", String::equals, "equal to", "GB"));
 	}
 
 	@Test
 	void findByNumericCode() {
 		assertThat(countryRepository.findByNumericCode(826))
 				.isPresent().get()
-				.has(extracted(Country::code, "code", String::equals, "equal to", "GB"));
+				.has(extracted(Country::getCode, "code", String::equals, "equal to", "GB"));
 	}
 
 }

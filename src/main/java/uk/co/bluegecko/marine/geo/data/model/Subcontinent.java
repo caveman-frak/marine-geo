@@ -7,23 +7,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.ToString;
 
 @Entity
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@EqualsAndHashCode
-@ToString
 public class Subcontinent {
 
 	@Id
-	@NonNull
 	int id;
 
 	@Column
@@ -33,7 +28,7 @@ public class Subcontinent {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "continent")
 	@NonNull
-	Continent continent;
+	final Continent continent;
 
 
 }
