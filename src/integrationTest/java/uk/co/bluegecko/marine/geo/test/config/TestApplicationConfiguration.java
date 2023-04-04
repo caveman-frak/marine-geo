@@ -1,17 +1,25 @@
 package uk.co.bluegecko.marine.geo.test.config;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.random.RandomGenerator;
 import lombok.NonNull;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import uk.co.bluegecko.marine.test.random.SteppingGenerator;
 
-import java.time.*;
-import java.util.random.RandomGenerator;
-
 @TestConfiguration
 public class TestApplicationConfiguration {
 
+	@SuppressWarnings("SameReturnValue")
 	@Bean
 	public ZoneId zone() {
 		return ZoneOffset.UTC;
