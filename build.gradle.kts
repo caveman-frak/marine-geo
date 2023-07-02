@@ -12,9 +12,8 @@ dependencies {
 
 testing {
     suites {
-        val integrationTest by registering(JvmTestSuite::class) {
+        val integrationTest by getting(JvmTestSuite::class) {
             dependencies {
-                implementation(project())
                 implementation(project(":shared"))
                 implementation(project(":wire"))
                 implementation(project(":test"))
