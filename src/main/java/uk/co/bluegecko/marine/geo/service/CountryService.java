@@ -1,10 +1,9 @@
 package uk.co.bluegecko.marine.geo.service;
 
-import lombok.NonNull;
-import uk.co.bluegecko.marine.wire.geo.Country;
-
 import java.util.List;
 import java.util.Optional;
+import lombok.NonNull;
+import uk.co.bluegecko.marine.geo.data.model.Country;
 
 public interface CountryService {
 

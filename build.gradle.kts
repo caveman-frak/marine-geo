@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":wire"))
+
     testImplementation(project(":test"))
     runtimeOnly("org.liquibase:liquibase-core")
     runtimeOnly("com.h2database:h2")
@@ -20,4 +21,8 @@ testing {
             }
         }
     }
+}
+
+application {
+    mainClass.set("uk.co.bluegecko.marine.geo.GeographicApplication")
 }

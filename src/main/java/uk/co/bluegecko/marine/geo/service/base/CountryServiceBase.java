@@ -1,20 +1,19 @@
 package uk.co.bluegecko.marine.geo.service.base;
 
-import lombok.NonNull;
-import lombok.Value;
-import org.springframework.data.repository.ListCrudRepository;
-import org.springframework.stereotype.Service;
-import uk.co.bluegecko.marine.geo.service.CountryService;
-import uk.co.bluegecko.marine.wire.geo.Country;
-
 import java.util.List;
 import java.util.Optional;
+import lombok.NonNull;
+import lombok.Value;
+import org.springframework.stereotype.Service;
+import uk.co.bluegecko.marine.geo.data.model.Country;
+import uk.co.bluegecko.marine.geo.service.CountryService;
+import uk.co.bluegecko.marine.shared.data.repository.ListRepository;
 
 @Service
 @Value
 public class CountryServiceBase implements CountryService {
 
-	ListCrudRepository<Country, String> countryRepository;
+	ListRepository<Country, String> countryRepository;
 
 	/**
 	 * List of all {@link Country}.
