@@ -1,4 +1,4 @@
-package uk.co.bluegecko.marine.geo.test.data;
+package uk.co.bluegecko.marine.test.data.geo;
 
 import java.util.stream.Stream;
 import lombok.experimental.UtilityClass;
@@ -9,19 +9,19 @@ import uk.co.bluegecko.marine.geo.data.model.Subcontinent;
 @UtilityClass
 public class TestCountries {
 
-	private static final Continent backOfBeyond = Continent.builder().code("BoB").name("Back of Beyond").build();
-	private static final Subcontinent whoKnows =
-			Subcontinent.builder().id(1).name("Who Knows").continent(backOfBeyond).build();
-	private static final Country unitedKingdom =
+	private static final Continent BOB = Continent.builder().code("BoB").name("Back of Beyond").build();
+	private static final Subcontinent NK =
+			Subcontinent.builder().id(1).name("Who Knows").continent(BOB).build();
+	public static final Country UK =
 			Country.builder().code("GB").code3("GBR").name("Grate Britannia")
-					.subcontinent(whoKnows)
+					.subcontinent(NK)
 					.nativeName("Arsehole of Europe").build();
-	private static final Country unitedStates =
+	public static final Country USA =
 			Country.builder().code("US").code3("USA").name("Fractured States of Murica")
-					.subcontinent(whoKnows)
+					.subcontinent(NK)
 					.nativeName("Something, something, Free World").build();
 
 	public static Stream<Country> countries() {
-		return Stream.of(unitedKingdom, unitedStates);
+		return Stream.of(UK, USA);
 	}
 }

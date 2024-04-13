@@ -29,6 +29,5 @@ hs_err_pid*
 build
 /.idea/
 /out/
-/src/integrationTest/generated_tests/
-/src/main/generated/
-/src/test/generated_tests/
+**/generated_tests/
+**/generated/

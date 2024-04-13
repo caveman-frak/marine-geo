@@ -8,9 +8,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.co.bluegecko.marine.geo.controller.ControllerConstants.CODE;
+import static uk.co.bluegecko.marine.geo.controller.ControllerConstants.COUNTRY;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,46 +21,36 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import uk.co.bluegecko.marine.geo.data.model.Continent;
-import uk.co.bluegecko.marine.geo.data.model.Country;
-import uk.co.bluegecko.marine.geo.data.model.Subcontinent;
-import uk.co.bluegecko.marine.geo.handler.CountryHandler;
-import uk.co.bluegecko.marine.geo.handler.ErrorHandler;
+import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
+import uk.co.bluegecko.marine.geo.mapper.CountryMapperImpl;
 import uk.co.bluegecko.marine.geo.service.CountryService;
 import uk.co.bluegecko.marine.geo.test.config.TestApplicationConfiguration;
+import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
 @WebMvcTest(CountryController.class)
-@ContextConfiguration(classes = {CountryController.class, CountryHandler.class,
-		ErrorHandler.class, TestApplicationConfiguration.class})
+@ContextConfiguration(classes = {CountryController.class, CountryMapperImpl.class,
+		TestApplicationConfiguration.class})
 class CountryControllerTest {
 
 	@MockBean
 	private CountryService countryService;
 
 	@Autowired
+	private CountryMapper mapper;
+
+	@Autowired
 	private MockMvc mockMvc;
 
-	private final Continent backOfBeyond = Continent.builder().code("BoB").name("Back of Beyond").build();
-	private final Subcontinent whoKnows =
-			Subcontinent.builder().id(1).name("Who Knows").continent(backOfBeyond).build();
-	private final List<Country> countries = List.of(
-			Country.builder().code("GB").code3("GBR").name("Grate Britannia")
-					.subcontinent(whoKnows)
-					.nativeName("Arsehole of Europe").build(),
-			Country.builder().code("US").code3("USA").name("Fractured States of Murica")
-					.subcontinent(whoKnows)
-					.nativeName("Something, something, Free World").build());
-
 	@BeforeEach
-	void setUp() {
-		when(countryService.all()).thenReturn(countries.stream().toList());
+	void setUpCountryService() {
+		when(countryService.all()).thenReturn(Stream.of(TestCountries.UK, TestCountries.USA));
 		when(countryService.find(any(String.class))).thenReturn(Optional.empty());
-		when(countryService.find(eq("GB"))).thenReturn(Optional.of(countries.get(0)));
+		when(countryService.find(eq("GB"))).thenReturn(Optional.of(TestCountries.UK));
 	}
 
 	@Test
 	void testGetAll() throws Exception {
-		mockMvc.perform(get("/country")
+		mockMvc.perform(get(COUNTRY)
 						.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -72,7 +64,7 @@ class CountryControllerTest {
 
 	@Test
 	void testFindExists() throws Exception {
-		mockMvc.perform(get("/country/{id}", "GB")
+		mockMvc.perform(get(COUNTRY + CODE, "GB")
 						.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
@@ -84,7 +76,7 @@ class CountryControllerTest {
 
 	@Test
 	void testFindMissing() throws Exception {
-		mockMvc.perform(get("/country/{id}", "DE")
+		mockMvc.perform(get(COUNTRY + CODE, "DE")
 						.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isNotFound())

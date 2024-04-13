@@ -4,6 +4,7 @@ import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.function.ServerResponse;
+import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.service.CountryService;
 import uk.co.bluegecko.marine.wire.geo.Country;
 
@@ -12,25 +13,28 @@ import uk.co.bluegecko.marine.wire.geo.Country;
 public class CountryHandler {
 
 	CountryService countryService;
-	
+	CountryMapper countryMapper;
+
 	/**
 	 * Find all {@link Country}.
 	 *
 	 * @return {@link ServerResponse} of {@link HttpStatus#OK} response with list of active vessels.
 	 */
 	public ServerResponse all() {
-		return ServerResponse.ok().body(countryService.all());
+		return ServerResponse.ok().body(countryService.all()
+				.map(countryMapper::toApi).toList());
 	}
 
 	/**
 	 * Find and return the {@link Country} with the unique id.
 	 *
 	 * @param code the unique ISO code of the country.
-	 * @return {@link ServerResponse} of {@link HttpStatus#OK} response with the vessel if it exists
-	 * otherwise {@link HttpStatus#NOT_FOUND}.
+	 * @return {@link ServerResponse} of {@link HttpStatus#OK} response with the vessel if it exists otherwise
+	 * {@link HttpStatus#NOT_FOUND}.
 	 */
 	public ServerResponse find(String code) {
 		return countryService.find(code)
+				.map(countryMapper::toApi)
 				.map(country -> ServerResponse.ok().body(country))
 				.orElse(ServerResponse.notFound().build());
 	}

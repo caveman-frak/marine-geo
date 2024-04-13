@@ -1,18 +1,18 @@
 package uk.co.bluegecko.marine.geo.service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import lombok.NonNull;
 import uk.co.bluegecko.marine.geo.data.model.Country;
 
 public interface CountryService {
 
 	/**
-	 * List of all {@link Country}.
+	 * Stream of all {@link Country}.
 	 *
 	 * @return all Countries/
 	 */
-	List<Country> all();
+	Stream<Country> all();
 
 	/**
 	 * Find a single {@link Country} by code.

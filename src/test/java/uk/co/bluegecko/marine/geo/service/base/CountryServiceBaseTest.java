@@ -1,35 +1,64 @@
 package uk.co.bluegecko.marine.geo.service.base;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.bluegecko.marine.geo.data.model.Country;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import uk.co.bluegecko.marine.geo.data.repository.CountryRepository;
 import uk.co.bluegecko.marine.geo.service.CountryService;
-import uk.co.bluegecko.marine.geo.test.data.TestCountries;
-import uk.co.bluegecko.marine.shared.data.repository.ListRepository;
-import uk.co.bluegecko.marine.test.data.Generators;
-import uk.co.bluegecko.marine.test.data.InMemoryRepository;
+import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
+@SpringJUnitConfig
+@Import(CountryServiceBase.class)
 class CountryServiceBaseTest {
 
+	@MockBean
+	CountryRepository repository;
+
+	@Autowired
 	private CountryService countryService;
 
 	@BeforeEach
-	void setUp() {
-		ListRepository<Country, String> countryRepository = new InMemoryRepository<>(
-				Country::getCode, InMemoryRepository.noop(), Generators.noop(), TestCountries.countries());
-
-		countryService = new CountryServiceBase(countryRepository);
+	void setUpRepository() {
+		when(repository.findAll()).thenReturn(TestCountries.countries().toList());
+		when(repository.findById(any())).thenReturn(Optional.empty());
+		when(repository.findByCode3(any())).thenReturn(Optional.empty());
+		when(repository.findById("GB")).thenReturn(Optional.of(TestCountries.UK));
+		when(repository.findByCode3("GBR")).thenReturn(Optional.of(TestCountries.UK));
 	}
 
 	@Test
 	void testAll() {
-		assertThat(countryService.all()).hasSize(2);
+		assertThat(countryService.all().toList())
+				.hasSize(2)
+				.contains(TestCountries.UK, TestCountries.USA);
+
+		verify(repository).findAll();
 	}
 
 	@Test
-	void testFind() {
+	void testFindByGB() {
 		assertThat(countryService.find("GB")).isPresent();
+
+		verify(repository).findById("GB");
+		verify(repository, never()).findByCode3("GB");
 	}
+
+	@Test
+	void testFindByGBR() {
+		assertThat(countryService.find("GBR")).isPresent();
+
+		verify(repository).findById("GBR");
+		verify(repository).findByCode3("GBR");
+	}
+
 }
