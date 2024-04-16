@@ -27,10 +27,10 @@ import uk.co.bluegecko.marine.geo.service.CountryService;
 import uk.co.bluegecko.marine.geo.test.config.TestApplicationConfiguration;
 import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
-@WebMvcTest(CountryController.class)
-@ContextConfiguration(classes = {CountryController.class, CountryMapperImpl.class,
+@WebMvcTest(CountryApiController.class)
+@ContextConfiguration(classes = {CountryApiController.class, CountryMapperImpl.class,
 		TestApplicationConfiguration.class})
-class CountryControllerTest {
+class CountryApiControllerTest {
 
 	@MockBean
 	private CountryService countryService;

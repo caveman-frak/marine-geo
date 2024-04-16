@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Countries</title>
+	<script src="https://unpkg.com/htmx.org@1.9.3"></script>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="../styles/default.css" th:href="@{/styles/default.css}" />
+<body class="bg-gray-100 text-red-800 p-0">
+
+<div class="container mx-auto text-center mb-8 bg-red-200 p-4">
+	<h1 class="text-4xl font-bold">Marine Geographic</h1>
+</div>
+
+<div class="container mx-auto">
+	<table class="table-auto text-red-800 border-collapse border border-red-400">
+		<thead class="bg-red-400">
+		<th class="text-right px-1">Code</th>
+		<th class="text-left px-2">Name</th>
+		<th class="text-left px-1">Native Name</th>
+		<th class="text-left px-1">Continent</th>
+		</thead>
+		<tbody>
+		<tr th:each="country: ${countries}" th:fragment="countries">
+			<td class="text-right px-1" th:text="${country.code}">GB</td>
+			<td class="bg-red-200 px-2" th:text="${country.name}">Great Britain</td>
+			<td class="text-red-400 px-1" th:text="${country.nativeName}">United Kingdon</td>
+			<td class="text-red-400 px-1" th:text="${country.continent.name}">Europe</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

@@ -39,6 +39,8 @@ spring:
     password:
     default-schema: public
     liquibase-schema: public
+  thymeleaf:
+    cache: false
 
 hibernate:
   hbm2ddl:
@@ -64,20 +66,18 @@ logging:
       org.springframework,
       javax.management,
       com.zaxxer.hikari,
-      tech.units.indriya"
+      tech.units.indriya,
+      org.springdoc"
+    database: "org.hibernate,
+      org.hibernate.SQL,
+      org.hibernate.orm.jdbc.bind,
+      org.hibernate.stat,
+      org.hibernate.SQL_SLOW,
+      org.hibernate.cache,
+      com.zaxxer.hikari,
+      liquibase"
   level:
-    root: "debug"
+    root: "info"
     bluegecko: "debug"
     noise: "info"
-    # basic log level for all messages
-    org.hibernate: info
-    # SQL statements and parameters
-    org.hibernate.SQL: debug
-    org.hibernate.orm.jdbc.bind: trace
-    # Statistics and slow queries
-    org.hibernate.stat: debug
-    org.hibernate.SQL_SLOW: info
-    # 2nd Level Cache
-    org.hibernate.cache: debug
-    # swagger
-    org.springdoc: debug
+    database: "info"

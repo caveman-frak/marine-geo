@@ -24,19 +24,19 @@ import uk.co.bluegecko.marine.wire.geo.Country;
  */
 @Value
 @RestController
-@RequestMapping(COUNTRY)
-public class CountryController {
+@RequestMapping(path = COUNTRY, produces = MediaType.APPLICATION_JSON_VALUE)
+public class CountryApiController {
 
 	CountryService service;
 	CountryMapper mapper;
 
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	@Operation(summary = "Retrieve all countries", description = "Retrieve all valid countries")
 	public ResponseEntity<List<Country>> retrieveAll() {
 		return ResponseEntity.ok(service.all().map(mapper::toApi).toList());
 	}
 
-	@GetMapping(path = CODE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(CODE)
 	@Operation(summary = "Retrieve one country", description = "Retrieve one country by country code")
 	public ResponseEntity<Country> retrieveByCode(
 			@NotBlank @Size(min = 2, max = 3)
