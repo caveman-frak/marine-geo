@@ -17,8 +17,6 @@ public class ControllerConstants {
 	public static final RequestPredicate ACCEPT_XML = accept(APPLICATION_XML);
 	public static final RequestPredicate ACCEPT_JSON_XML = accept(APPLICATION_JSON, APPLICATION_XML);
 
-	public static final String API = "/api";
-	public static final String APP = "/app";
 	public static final String COUNTRY = "/country";
 	public static final String CODE = "/{code}";
 	public static final String ID = "/{code}";

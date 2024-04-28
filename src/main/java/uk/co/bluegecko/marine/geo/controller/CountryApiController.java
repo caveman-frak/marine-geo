@@ -24,7 +24,7 @@ import uk.co.bluegecko.marine.wire.geo.Country;
  */
 @Value
 @RestController
-@RequestMapping(path = COUNTRY, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = COUNTRY, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class CountryApiController {
 
 	CountryService service;

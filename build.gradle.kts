@@ -1,21 +1,18 @@
 plugins {
     id("marine.application-conventions")
+    id("marine.tailwind-build")
 }
 
 dependencies {
     implementation(project(":shared"))
     implementation(project(":wire"))
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:3.2.0")
-
-    testImplementation(project(":test"))
-    runtimeOnly("org.liquibase:liquibase-core")
-    runtimeOnly("com.h2database:h2")
+    implementation("io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:3.3.0")
 }
 
 testing {
     suites {
-        val integrationTest by getting(JvmTestSuite::class) {
+        withType<JvmTestSuite> {
             dependencies {
                 implementation(project(":shared"))
                 implementation(project(":wire"))

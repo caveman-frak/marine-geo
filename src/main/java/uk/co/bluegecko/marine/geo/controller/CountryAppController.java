@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.service.CountryService;
 
+/**
+ * Read-only HTML endpoint for {@link uk.co.bluegecko.marine.wire.geo.Country}.
+ */
 @Value
 @Controller
 @RequestMapping(path = COUNTRY, produces = MediaType.TEXT_HTML_VALUE)
