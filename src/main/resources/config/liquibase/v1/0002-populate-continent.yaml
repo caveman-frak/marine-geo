@@ -16,7 +16,7 @@ databaseChangeLog:
                   name: name
                   type: VARCHAR(100)
             relativeToChangelogFile: true
-            file: data/v1/continent-data.csv
+            file: data/continent-data.csv
             tableName: continent
             usePreparedStatements: true
             encoding: UTF-8

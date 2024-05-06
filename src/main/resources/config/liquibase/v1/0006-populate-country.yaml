@@ -28,7 +28,7 @@ databaseChangeLog:
                   name: unicode_flag
                   type: CHAR(2)
             relativeToChangelogFile: true
-            file: data/v1/country-data.csv
+            file: data/country-data.csv
             tableName: country
             usePreparedStatements: true
             encoding: UTF-8

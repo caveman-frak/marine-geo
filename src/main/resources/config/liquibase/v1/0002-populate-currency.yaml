@@ -22,7 +22,7 @@ databaseChangeLog:
                   name: symbol
                   type: VARCHAR(6)
             relativeToChangelogFile: true
-            file: data/v1/currency-data.csv
+            file: data/currency-data.csv
             tableName: currency
             usePreparedStatements: true
             encoding: UTF-8
