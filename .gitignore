@@ -31,4 +31,4 @@ build
 /out/
 **/generated_tests/
 **/generated/
-../.tailwindcss-binaries/
+**/output.css
