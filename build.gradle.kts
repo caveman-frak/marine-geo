@@ -25,3 +25,7 @@ testing {
 application {
     mainClass.set("uk.co.bluegecko.marine.geo.GeographicApplication")
 }
+
+tasks.processResources {
+    dependsOn(tasks.named("buildCss"))
+}
