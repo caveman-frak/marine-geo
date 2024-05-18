@@ -5,6 +5,8 @@ server:
     min-response-size: 2048
 
 spring:
+  application:
+    name: Marine Geographic Server
   lifecycle:
     timeout-per-shutdown-phase: "5s"
   output:
@@ -56,8 +58,10 @@ management:
       exposure:
         include: "*"
 
-springdoc:
-  version: '@springdoc.version@'
+app:
+  name: "${name}"
+  description: "${description}"
+  version: "${version}"
 
 logging:
   group:

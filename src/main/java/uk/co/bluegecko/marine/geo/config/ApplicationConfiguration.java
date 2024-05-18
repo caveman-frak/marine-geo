@@ -1,48 +1,32 @@
 package uk.co.bluegecko.marine.geo.config;
 
+import static org.apache.commons.text.WordUtils.capitalizeFully;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import java.time.Clock;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import uk.co.bluegecko.marine.shared.configuration.SharedConfiguration;
 
 /**
  * Configuration beans for general application use.
  */
-@Component
-public class ApplicationConfiguration {
-
-	/**
-	 * Standard Clock instance.
-	 *
-	 * @return default to {@link Clock#systemUTC()} .
-	 */
-	@Bean
-	public Clock clock() {
-		return Clock.systemUTC();
-	}
-
-	/**
-	 * Standard Random instance.
-	 *
-	 * @return default to {@link Random}.
-	 */
-	@Bean
-	public RandomGenerator randomGenerator() {
-		return new Random();
-	}
+@Configuration
+public class ApplicationConfiguration extends SharedConfiguration {
 
 	@Bean
-	public OpenAPI customOpenAPI(@Value("${springdoc.version}") String appVersion) {
+	public OpenAPI customOpenAPI(
+			@Value("${spring.application.name:Unknown}") String name,
+			@Value("${app.description:Unknown}") String description,
+			@Value("${app.version:Unknown}") String version) {
 		return new OpenAPI()
 				.components(new Components())
-				.info(new Info().title("Marine Geo Server").version(appVersion)
+				.info(new Info().title(capitalizeFully(name)).description(description).version(version)
 						.license(new License().name("M.I.T.").url("http://springdoc.org")));
 	}
+
 
 }
