@@ -1,12 +1,12 @@
 package uk.co.bluegecko.marine.geo;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
+import uk.co.bluegecko.marine.shared.application.AbstractApplication;
 
 @SpringBootApplication
-public class GeographicApplication {
+public class GeographicApplication extends AbstractApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(GeographicApplication.class).registerShutdownHook(true).run(args);
+		run(GeographicApplication.class, args);
 	}
 }
