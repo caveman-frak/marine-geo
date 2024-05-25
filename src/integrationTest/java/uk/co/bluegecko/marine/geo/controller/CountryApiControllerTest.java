@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapperImpl;
 import uk.co.bluegecko.marine.geo.service.CountryService;
-import uk.co.bluegecko.marine.geo.test.config.TestApplicationConfiguration;
+import uk.co.bluegecko.marine.test.configuration.TestApplicationConfiguration;
 import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
 @WebMvcTest(CountryApiController.class)

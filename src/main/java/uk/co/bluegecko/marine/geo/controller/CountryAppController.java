@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.service.CountryService;
+import uk.co.bluegecko.marine.wire.geo.Country;
 
 /**
- * Read-only HTML endpoint for {@link uk.co.bluegecko.marine.wire.geo.Country}.
+ * Read-only HTML endpoint for {@link Country}.
  */
 @Value
 @Controller

@@ -17,6 +17,8 @@ testing {
                 implementation(project(":shared"))
                 implementation(project(":wire"))
                 implementation(project(":test"))
+                implementation(testFixtures(project(":shared")))
+                implementation(testFixtures(project(":wire")))
             }
         }
     }

@@ -22,8 +22,10 @@ class CountryMapperTest {
 		assertThat(mapper.toApi(Country.builder().code("GB").code3("GBR").name("Great Britain").nativeName("ArseEnd")
 				.subcontinent(Subcontinent.builder().id(0).name("Western Europe").continent(Continent.builder()
 						.id(0).code("EU").name("Europe").build()).build()).build()))
-				.isEqualTo(uk.co.bluegecko.marine.wire.geo.Country.builder().code("GB").name("Great Britain")
-						.nativeName("ArseEnd").continent(uk.co.bluegecko.marine.wire.geo.Continent.builder()
+				.isEqualTo(uk.co.bluegecko.marine.wire.geo.Country.builder().code("GB")
+						.name("Great Britain")
+						.nativeName("ArseEnd")
+						.continent(uk.co.bluegecko.marine.wire.geo.Continent.builder()
 								.code("EU").name("Europe").build()).build());
 	}
 
