@@ -1,5 +1,13 @@
 package uk.co.bluegecko.marine.geo.handler;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Base64;
+import java.util.random.RandomGenerator;
+import java.util.stream.Collectors;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -9,15 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.function.EntityResponse;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
-
-import java.time.Clock;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Base64;
-import java.util.random.RandomGenerator;
-import java.util.stream.Collectors;
-
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
 /**
  * Handle {@link ServerRequest} related errors and logging.
