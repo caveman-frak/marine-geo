@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import uk.co.bluegecko.marine.geo.data.fixture.CountryFixture;
 import uk.co.bluegecko.marine.geo.data.repository.CountryRepository;
 import uk.co.bluegecko.marine.geo.service.CountryService;
-import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
 @SpringJUnitConfig
 @Import(CountryServiceBase.class)
@@ -29,18 +29,18 @@ class CountryServiceBaseTest {
 
 	@BeforeEach
 	void setUpRepository() {
-		when(repository.findAll()).thenReturn(TestCountries.countries().toList());
+		when(repository.findAll()).thenReturn(CountryFixture.countries().toList());
 		when(repository.findById(any())).thenReturn(Optional.empty());
 		when(repository.findByCode3(any())).thenReturn(Optional.empty());
-		when(repository.findById("GB")).thenReturn(Optional.of(TestCountries.UK));
-		when(repository.findByCode3("GBR")).thenReturn(Optional.of(TestCountries.UK));
+		when(repository.findById("GB")).thenReturn(Optional.of(CountryFixture.UK));
+		when(repository.findByCode3("GBR")).thenReturn(Optional.of(CountryFixture.UK));
 	}
 
 	@Test
 	void testAll() {
 		assertThat(countryService.all().toList())
 				.hasSize(2)
-				.contains(TestCountries.UK, TestCountries.USA);
+				.contains(CountryFixture.UK, CountryFixture.USA);
 
 		verify(repository).findAll();
 	}

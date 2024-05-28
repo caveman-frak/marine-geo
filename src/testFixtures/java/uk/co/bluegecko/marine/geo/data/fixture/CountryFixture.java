@@ -1,4 +1,4 @@
-package uk.co.bluegecko.marine.test.data.geo;
+package uk.co.bluegecko.marine.geo.data.fixture;
 
 import java.util.stream.Stream;
 import lombok.experimental.UtilityClass;
@@ -7,7 +7,7 @@ import uk.co.bluegecko.marine.geo.data.model.Country;
 import uk.co.bluegecko.marine.geo.data.model.Subcontinent;
 
 @UtilityClass
-public class TestCountries {
+public class CountryFixture {
 
 	private static final Continent BOB = Continent.builder().code("BoB").name("Back of Beyond").build();
 	private static final Subcontinent NK =

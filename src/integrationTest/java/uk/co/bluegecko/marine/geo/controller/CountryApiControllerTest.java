@@ -21,11 +21,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import uk.co.bluegecko.marine.geo.data.fixture.CountryFixture;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapperImpl;
 import uk.co.bluegecko.marine.geo.service.CountryService;
 import uk.co.bluegecko.marine.test.configuration.TestApplicationConfiguration;
-import uk.co.bluegecko.marine.test.data.geo.TestCountries;
 
 @WebMvcTest(CountryApiController.class)
 @ContextConfiguration(classes = {CountryApiController.class, CountryMapperImpl.class,
@@ -43,9 +43,9 @@ class CountryApiControllerTest {
 
 	@BeforeEach
 	void setUpCountryService() {
-		when(countryService.all()).thenReturn(Stream.of(TestCountries.UK, TestCountries.USA));
+		when(countryService.all()).thenReturn(Stream.of(CountryFixture.UK, CountryFixture.USA));
 		when(countryService.find(any(String.class))).thenReturn(Optional.empty());
-		when(countryService.find(eq("GB"))).thenReturn(Optional.of(TestCountries.UK));
+		when(countryService.find(eq("GB"))).thenReturn(Optional.of(CountryFixture.UK));
 	}
 
 	@Test
