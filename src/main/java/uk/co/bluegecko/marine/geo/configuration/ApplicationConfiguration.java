@@ -1,4 +1,4 @@
-package uk.co.bluegecko.marine.geo.config;
+package uk.co.bluegecko.marine.geo.configuration;
 
 import static org.apache.commons.text.WordUtils.capitalizeFully;
 
@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import uk.co.bluegecko.marine.shared.configuration.SharedConfiguration;
@@ -28,5 +29,17 @@ public class ApplicationConfiguration extends SharedConfiguration {
 						.license(new License().name("M.I.T.").url("http://springdoc.org")));
 	}
 
+	@Bean
+	String[] bundleNames() {
+		return new String[]{
+				"messages.geographic",
+				"messages.country"};
+	}
+
+	@Override
+	@Bean
+	public MessageSource messageSource(String... bundleNames) {
+		return super.messageSource(bundleNames);
+	}
 
 }

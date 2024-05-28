@@ -19,7 +19,8 @@ spring:
     problemdetails:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:test;MODE=MariaDB;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    url: "jdbc:h2:mem:test;MODE=MariaDB;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1;\
+DB_CLOSE_ON_EXIT=FALSE;schema=public"
     username: sa
     password:
     driverClassName: org.h2.Driver
@@ -78,10 +79,11 @@ logging:
       org.hibernate.stat,
       org.hibernate.SQL_SLOW,
       org.hibernate.cache,
-      com.zaxxer.hikari,
-      liquibase"
+      com.zaxxer.hikari"
+    problems: ""
   level:
     root: "info"
     bluegecko: "debug"
     noise: "info"
     database: "info"
+    problems: "debug"
