@@ -58,6 +58,11 @@ management:
     jmx:
       exposure:
         include: "*"
+  endpoint:
+    env:
+      show-values: always
+    configprops:
+      show-values: always
 
 app:
   name: "${name}"
@@ -80,10 +85,21 @@ logging:
       org.hibernate.SQL_SLOW,
       org.hibernate.cache,
       com.zaxxer.hikari"
-    problems: ""
+    logger: "ch.qos.logback"
+    problems: "io.opentelemetry"
   level:
     root: "info"
     bluegecko: "debug"
     noise: "info"
     database: "info"
-    problems: "debug"
+    logger: "warn"
+    problems: "trace"
+    web: "info"
+
+otel:
+  config:
+    file: "../env/otel-config.yaml"
+
+marine:
+  sanitise:
+    keys: "^java.*"
