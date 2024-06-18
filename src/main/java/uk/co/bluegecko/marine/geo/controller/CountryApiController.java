@@ -5,6 +5,7 @@ import static uk.co.bluegecko.marine.geo.controller.ControllerConstants.COUNTRY;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -30,6 +31,7 @@ import uk.co.bluegecko.marine.wire.geo.Country;
 @RequestMapping(path = COUNTRY, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Tag(name = "Country", description = "API for Geographic Countries")
 public class CountryApiController {
 
 	CountryService service;

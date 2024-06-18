@@ -20,13 +20,14 @@ public class ApplicationConfiguration extends SharedConfiguration {
 
 	@Bean
 	public OpenAPI customOpenAPI(
-			@Value("${spring.application.name:Unknown}") String name,
-			@Value("${app.description:Unknown}") String description,
-			@Value("${app.version:Unknown}") String version) {
+			@Value("${spring.application.name:Unknown Application}") String name,
+			@Value("${app.description:Unknown Description}") String description,
+			@Value("${app.version:Unknown Version}") String version,
+			@Value("${app.licence:http://localhost:8080/license.txt}") String licence) {
 		return new OpenAPI()
 				.components(new Components())
 				.info(new Info().title(capitalizeFully(name)).description(description).version(version)
-						.license(new License().name("M.I.T.").url("http://springdoc.org")));
+						.license(new License().name("M.I.T.").url(licence)));
 	}
 
 	@Bean

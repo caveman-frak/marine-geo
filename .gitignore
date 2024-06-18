@@ -32,4 +32,4 @@ build
 **/generated_tests/
 **/generated/
 **/output.css
-/application.*
+/application*.*
