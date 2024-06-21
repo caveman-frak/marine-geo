@@ -1,0 +1,11 @@
+country-controller:
+  name: Country
+  description: API for Geographic Countries
+  get-all:
+    summary: Retrieve all countries.
+    description: Retrieve all valid sovereign countries.
+  get-one:
+    summary: Retrieve one country.
+    description: Retrieve one valid soverign country by ISO country code.
+    param:
+      code: The country code (ISO Alpha-2 or Alpha-3)

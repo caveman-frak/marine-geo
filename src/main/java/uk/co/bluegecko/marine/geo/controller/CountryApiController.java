@@ -31,25 +31,31 @@ import uk.co.bluegecko.marine.wire.geo.Country;
 @RequestMapping(path = COUNTRY, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-@Tag(name = "Country", description = "API for Geographic Countries")
+@Tag(name = "${country-controller.name}", description = "${country-controller.description}")
 public class CountryApiController {
 
 	CountryService service;
 	CountryMapper mapper;
 
 	@GetMapping
-	@Operation(summary = "Retrieve all countries", description = "Retrieve all valid countries")
+	@Operation(operationId = "countries",
+			summary = "${country-controller.get-all.summary}",
+			description = "${country-controller.get-all.description}")
 	@Timed
 	public ResponseEntity<List<Country>> retrieveAll() {
 		return ResponseEntity.ok(service.all().map(mapper::toApi).toList());
 	}
 
 	@GetMapping(CODE)
-	@Operation(summary = "Retrieve one country", description = "Retrieve one country by country code")
+	@Operation(operationId = "country",
+			summary = "${country-controller.get-one.summary}",
+			description = "${country-controller.get-one.description}")
 	@Timed(level = Level.WARN)
 	public ResponseEntity<Country> retrieveByCode(
 			@NotBlank @Size(min = 2, max = 3)
-			@Parameter(description = "The country code", example = "GB") @PathVariable String code) {
+			@Parameter(description = "${country-controller.get-one.param.code}",
+					example = "GB")
+			@PathVariable String code) {
 		return ResponseEntity.of(service.find(code).map(mapper::toApi));
 	}
 
