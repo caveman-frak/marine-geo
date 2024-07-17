@@ -39,3 +39,6 @@ build
 
 # Application pid/port files
 /application*.*
+
+# Test Database
+/.jqwik-database
