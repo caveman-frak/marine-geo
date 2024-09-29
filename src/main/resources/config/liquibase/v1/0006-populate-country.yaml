@@ -8,25 +8,28 @@ databaseChangeLog:
             columns:
               - column:
                   name: code
-                  type: CHAR(2)
+                  type: STRING
               - column:
                   name: code3
-                  type: CHAR(3)
+                  type: STRING
               - column:
                   name: name
-                  type: VARCHAR(100)
+                  type: STRING
+              - column:
+                  name: subcontinent
+                  type: NUMERIC
+              - column:
+                  name: numeric_code
+                  type: NUMERIC
               - column:
                   name: native_name
-                  type: VARCHAR(100)
-              - column:
-                  name: continent
-                  type: CHAR(2)
+                  type: STRING
               - column:
                   name: flag
-                  type: CHAR(1)
+                  type: STRING
               - column:
-                  name: unicode_flag
-                  type: CHAR(2)
+                  name: flag_unicode
+                  type: STRING
             relativeToChangelogFile: true
             file: data/country-data.csv
             tableName: country

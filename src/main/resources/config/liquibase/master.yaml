@@ -2,3 +2,8 @@ databaseChangeLog:
   - includeAll:
       relativeToChangelogFile: true
       path: v1/
+      endsWithFilter: "sql"
+  - includeAll:
+      relativeToChangelogFile: true
+      path: v1/
+      endsWithFilter: "yaml"
