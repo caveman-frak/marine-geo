@@ -25,7 +25,7 @@ import uk.co.bluegecko.marine.geo.data.fixture.CountryFixture;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapper;
 import uk.co.bluegecko.marine.geo.mapper.CountryMapperImpl;
 import uk.co.bluegecko.marine.geo.service.CountryService;
-import uk.co.bluegecko.marine.test.configuration.TestApplicationConfiguration;
+import uk.co.bluegecko.marine.shared.configuration.TestApplicationConfiguration;
 
 @WebMvcTest(CountryApiController.class)
 @ContextConfiguration(classes = {CountryApiController.class, CountryMapperImpl.class,
