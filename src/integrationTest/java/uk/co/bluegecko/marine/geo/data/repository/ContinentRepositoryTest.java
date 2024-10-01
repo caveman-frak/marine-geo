@@ -2,7 +2,7 @@ package uk.co.bluegecko.marine.geo.data.repository;
 
 import static org.assertj.core.api.Assertions.allOf;
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.co.bluegecko.marine.shared.jassert.Conditions.extracted;
+import static uk.co.bluegecko.marine.shared.test.jassert.Conditions.extracted;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
